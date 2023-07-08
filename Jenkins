@@ -1,0 +1,26 @@
+#jenkins-mist-backup
+pipeline {
+    agent any
+    
+    environment {
+        MIST_HOST = credentials('MIST_HOST')
+        MIST_USER = credentials('MIST_USER')
+        MIST_PASSWORD = credentials('MIST_PASSWORD')
+    }
+    
+    stages {
+        stage('Setup') {
+            steps {
+                sh 'pip install mistapi'
+                sh 'git clone https://github.com/Pathi-lab/mist_library.git'
+            }
+        }
+        
+        stage('Backup') {
+            steps {
+                sh "python3 mist_library/scripts/orgs/org_complete_backup.py --org_id=$org_id"
+            }
+        }
+    }
+}
+
