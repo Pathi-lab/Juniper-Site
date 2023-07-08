@@ -1,0 +1,9 @@
+export MIST_HOST=$MIST_HOST
+export MIST_USER=$MIST_USER
+export MIST_PASSWORD=Penhorse#3
+
+pip install mistapi
+
+git clone https://github.com/Pathi-lab/mist_library.git
+
+python3 mist_library/scripts/orgs/org_complete_backup.py --org_id=$org_id
